@@ -9,11 +9,15 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 String greet({required String name, dynamic hint}) =>
     RustLib.instance.api.greet(name: name, hint: hint);
 
-Future<String> asyncGreet(
+Future<String> asyncGreetWithCallback(
         {required String name,
         required FutureOr<void> Function(String) logger,
         dynamic hint}) =>
-    RustLib.instance.api.asyncGreet(name: name, logger: logger, hint: hint);
+    RustLib.instance.api
+        .asyncGreetWithCallback(name: name, logger: logger, hint: hint);
+
+Future<String> asyncGreet({required String name, dynamic hint}) =>
+    RustLib.instance.api.asyncGreet(name: name, hint: hint);
 
 Future<String> asyncNoAwaitGreet(
         {required String name,

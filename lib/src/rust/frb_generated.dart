@@ -56,7 +56,9 @@ class RustLib extends BaseEntrypoint<RustLibApi, RustLibApiImpl, RustLibWire> {
 }
 
 abstract class RustLibApi extends BaseApi {
-  Future<String> asyncGreet(
+  Future<String> asyncGreet({required String name, dynamic hint});
+
+  Future<String> asyncGreetWithCallback(
       {required String name,
       required FutureOr<void> Function(String) logger,
       dynamic hint});
@@ -78,22 +80,18 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   });
 
   @override
-  Future<String> asyncGreet(
-      {required String name,
-      required FutureOr<void> Function(String) logger,
-      dynamic hint}) {
+  Future<String> asyncGreet({required String name, dynamic hint}) {
     return handler.executeNormal(NormalTask(
       callFfi: (port_) {
         var arg0 = cst_encode_String(name);
-        var arg1 = cst_encode_DartFn_Inputs_String_Output_unit(logger);
-        return wire.wire_async_greet(port_, arg0, arg1);
+        return wire.wire_async_greet(port_, arg0);
       },
       codec: DcoCodec(
         decodeSuccessData: dco_decode_String,
         decodeErrorData: dco_decode_AnyhowException,
       ),
       constMeta: kAsyncGreetConstMeta,
-      argValues: [name, logger],
+      argValues: [name],
       apiImpl: this,
       hint: hint,
     ));
@@ -101,6 +99,33 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
   TaskConstMeta get kAsyncGreetConstMeta => const TaskConstMeta(
         debugName: "async_greet",
+        argNames: ["name"],
+      );
+
+  @override
+  Future<String> asyncGreetWithCallback(
+      {required String name,
+      required FutureOr<void> Function(String) logger,
+      dynamic hint}) {
+    return handler.executeNormal(NormalTask(
+      callFfi: (port_) {
+        var arg0 = cst_encode_String(name);
+        var arg1 = cst_encode_DartFn_Inputs_String_Output_unit(logger);
+        return wire.wire_async_greet_with_callback(port_, arg0, arg1);
+      },
+      codec: DcoCodec(
+        decodeSuccessData: dco_decode_String,
+        decodeErrorData: dco_decode_AnyhowException,
+      ),
+      constMeta: kAsyncGreetWithCallbackConstMeta,
+      argValues: [name, logger],
+      apiImpl: this,
+      hint: hint,
+    ));
+  }
+
+  TaskConstMeta get kAsyncGreetWithCallbackConstMeta => const TaskConstMeta(
+        debugName: "async_greet_with_callback",
         argNames: ["name", "logger"],
       );
 

@@ -143,9 +143,12 @@ class RustLibWire extends BaseWire {
       wasmModule.dart_fn_deliver_output(
           call_id, ptr_, rust_vec_len_, data_len_);
 
-  void wire_async_greet(
+  void wire_async_greet(NativePortType port_, String name) =>
+      wasmModule.wire_async_greet(port_, name);
+
+  void wire_async_greet_with_callback(
           NativePortType port_, String name, PlatformPointer logger) =>
-      wasmModule.wire_async_greet(port_, name, logger);
+      wasmModule.wire_async_greet_with_callback(port_, name, logger);
 
   void wire_async_no_await_greet(
           NativePortType port_, String name, PlatformPointer logger) =>
@@ -170,7 +173,9 @@ class RustLibWasmModule implements WasmModule {
   external void dart_fn_deliver_output(int call_id,
       PlatformGeneralizedUint8ListPtr ptr_, int rust_vec_len_, int data_len_);
 
-  external void wire_async_greet(
+  external void wire_async_greet(NativePortType port_, String name);
+
+  external void wire_async_greet_with_callback(
       NativePortType port_, String name, PlatformPointer logger);
 
   external void wire_async_no_await_greet(

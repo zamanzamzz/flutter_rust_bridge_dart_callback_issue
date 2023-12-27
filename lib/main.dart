@@ -77,8 +77,6 @@ class _AppBodyState extends State<AppBody> {
               print('DART: before async greet');
               final greeting = await asyncGreet(
                 name: nameController.text,
-                logger: (p0) => Future.delayed(
-                    const Duration(milliseconds: 100), () => print(p0)),
               );
               print('DART: async greet output: $greeting');
               if (mounted) {
@@ -89,6 +87,27 @@ class _AppBodyState extends State<AppBody> {
             }
           },
           child: const Text('Call Async Greet'),
+        ),
+        const SizedBox(height: 5),
+        TextButton(
+          onPressed: () async {
+            try {
+              print('DART: before async greet with callback');
+              final greeting = await asyncGreetWithCallback(
+                name: nameController.text,
+                logger: (p0) => Future.delayed(
+                    const Duration(milliseconds: 100), () => print(p0)),
+              );
+              print('DART: async greet with callback output: $greeting');
+              if (mounted) {
+                showSnackbar(
+                    'DART: async greet with callback output: $greeting');
+              }
+            } catch (e) {
+              print('DART: unable to async greet with callback: $e');
+            }
+          },
+          child: const Text('Call Async Greet With Callback'),
         ),
         const SizedBox(height: 5),
         TextButton(

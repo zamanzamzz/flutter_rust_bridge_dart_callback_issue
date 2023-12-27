@@ -35,7 +35,6 @@ flutter_rust_bridge::frb_generated_default_handler!();
 fn wire_async_greet_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     name: impl CstDecode<String> + core::panic::UnwindSafe,
-    logger: impl CstDecode<flutter_rust_bridge::DartOpaque> + core::panic::UnwindSafe,
 ) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::DcoCodec, _, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
@@ -45,11 +44,36 @@ fn wire_async_greet_impl(
         },
         move || {
             let api_name = name.cst_decode();
+            move |context| async move {
+                transform_result_dco(
+                    (move || async move { crate::api::simple::async_greet(api_name).await })()
+                        .await,
+                )
+            }
+        },
+    )
+}
+fn wire_async_greet_with_callback_impl(
+    port_: flutter_rust_bridge::for_generated::MessagePort,
+    name: impl CstDecode<String> + core::panic::UnwindSafe,
+    logger: impl CstDecode<flutter_rust_bridge::DartOpaque> + core::panic::UnwindSafe,
+) {
+    FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::DcoCodec, _, _, _>(
+        flutter_rust_bridge::for_generated::TaskInfo {
+            debug_name: "async_greet_with_callback",
+            port: Some(port_),
+            mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
+        },
+        move || {
+            let api_name = name.cst_decode();
             let api_logger = decode_DartFn_Inputs_String_Output_unit(logger.cst_decode());
             move |context| async move {
-                transform_result_dco((move ||  async move {
-                         crate::api::simple::async_greet(api_name, api_logger).await
-                    })().await)
+                transform_result_dco(
+                    (move || async move {
+                        crate::api::simple::async_greet_with_callback(api_name, api_logger).await
+                    })()
+                    .await,
+                )
             }
         },
     )

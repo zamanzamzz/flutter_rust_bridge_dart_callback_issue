@@ -188,22 +188,40 @@ class RustLibWire implements BaseWire {
   void wire_async_greet(
     int port_,
     ffi.Pointer<wire_cst_list_prim_u_8> name,
-    ffi.Pointer<ffi.Void> logger,
   ) {
     return _wire_async_greet(
+      port_,
+      name,
+    );
+  }
+
+  late final _wire_async_greetPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Int64,
+              ffi.Pointer<wire_cst_list_prim_u_8>)>>('wire_async_greet');
+  late final _wire_async_greet = _wire_async_greetPtr
+      .asFunction<void Function(int, ffi.Pointer<wire_cst_list_prim_u_8>)>();
+
+  void wire_async_greet_with_callback(
+    int port_,
+    ffi.Pointer<wire_cst_list_prim_u_8> name,
+    ffi.Pointer<ffi.Void> logger,
+  ) {
+    return _wire_async_greet_with_callback(
       port_,
       name,
       logger,
     );
   }
 
-  late final _wire_async_greetPtr = _lookup<
+  late final _wire_async_greet_with_callbackPtr = _lookup<
       ffi.NativeFunction<
           ffi.Void Function(ffi.Int64, ffi.Pointer<wire_cst_list_prim_u_8>,
-              ffi.Pointer<ffi.Void>)>>('wire_async_greet');
-  late final _wire_async_greet = _wire_async_greetPtr.asFunction<
-      void Function(
-          int, ffi.Pointer<wire_cst_list_prim_u_8>, ffi.Pointer<ffi.Void>)>();
+              ffi.Pointer<ffi.Void>)>>('wire_async_greet_with_callback');
+  late final _wire_async_greet_with_callback =
+      _wire_async_greet_with_callbackPtr.asFunction<
+          void Function(int, ffi.Pointer<wire_cst_list_prim_u_8>,
+              ffi.Pointer<ffi.Void>)>();
 
   void wire_async_no_await_greet(
     int port_,

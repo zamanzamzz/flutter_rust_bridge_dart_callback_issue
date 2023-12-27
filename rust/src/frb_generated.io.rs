@@ -62,12 +62,17 @@ pub extern "C" fn dart_fn_deliver_output(
 }
 
 #[no_mangle]
-pub extern "C" fn wire_async_greet(
+pub extern "C" fn wire_async_greet(port_: i64, name: *mut wire_cst_list_prim_u_8) {
+    wire_async_greet_impl(port_, name)
+}
+
+#[no_mangle]
+pub extern "C" fn wire_async_greet_with_callback(
     port_: i64,
     name: *mut wire_cst_list_prim_u_8,
     logger: *const std::ffi::c_void,
 ) {
-    wire_async_greet_impl(port_, name, logger)
+    wire_async_greet_with_callback_impl(port_, name, logger)
 }
 
 #[no_mangle]
