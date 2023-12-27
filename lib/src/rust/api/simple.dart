@@ -6,8 +6,8 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-String greet({required String name, dynamic hint}) =>
-    RustLib.instance.api.greet(name: name, hint: hint);
+String syncGreet({required String name, dynamic hint}) =>
+    RustLib.instance.api.syncGreet(name: name, hint: hint);
 
 Future<String> asyncGreetWithCallback(
         {required String name,
@@ -16,12 +16,12 @@ Future<String> asyncGreetWithCallback(
     RustLib.instance.api
         .asyncGreetWithCallback(name: name, logger: logger, hint: hint);
 
-Future<String> asyncGreet({required String name, dynamic hint}) =>
-    RustLib.instance.api.asyncGreet(name: name, hint: hint);
-
-Future<String> asyncNoAwaitGreet(
+Future<String> asyncGreetWithCallbackNoAwait(
         {required String name,
         required FutureOr<void> Function(String) logger,
         dynamic hint}) =>
     RustLib.instance.api
-        .asyncNoAwaitGreet(name: name, logger: logger, hint: hint);
+        .asyncGreetWithCallbackNoAwait(name: name, logger: logger, hint: hint);
+
+Future<String> asyncGreet({required String name, dynamic hint}) =>
+    RustLib.instance.api.asyncGreet(name: name, hint: hint);

@@ -223,40 +223,41 @@ class RustLibWire implements BaseWire {
           void Function(int, ffi.Pointer<wire_cst_list_prim_u_8>,
               ffi.Pointer<ffi.Void>)>();
 
-  void wire_async_no_await_greet(
+  void wire_async_greet_with_callback_no_await(
     int port_,
     ffi.Pointer<wire_cst_list_prim_u_8> name,
     ffi.Pointer<ffi.Void> logger,
   ) {
-    return _wire_async_no_await_greet(
+    return _wire_async_greet_with_callback_no_await(
       port_,
       name,
       logger,
     );
   }
 
-  late final _wire_async_no_await_greetPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Void Function(ffi.Int64, ffi.Pointer<wire_cst_list_prim_u_8>,
-              ffi.Pointer<ffi.Void>)>>('wire_async_no_await_greet');
-  late final _wire_async_no_await_greet =
-      _wire_async_no_await_greetPtr.asFunction<
+  late final _wire_async_greet_with_callback_no_awaitPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Int64, ffi.Pointer<wire_cst_list_prim_u_8>,
+                  ffi.Pointer<ffi.Void>)>>(
+      'wire_async_greet_with_callback_no_await');
+  late final _wire_async_greet_with_callback_no_await =
+      _wire_async_greet_with_callback_no_awaitPtr.asFunction<
           void Function(int, ffi.Pointer<wire_cst_list_prim_u_8>,
               ffi.Pointer<ffi.Void>)>();
 
-  WireSyncRust2DartDco wire_greet(
+  WireSyncRust2DartDco wire_sync_greet(
     ffi.Pointer<wire_cst_list_prim_u_8> name,
   ) {
-    return _wire_greet(
+    return _wire_sync_greet(
       name,
     );
   }
 
-  late final _wire_greetPtr = _lookup<
+  late final _wire_sync_greetPtr = _lookup<
       ffi.NativeFunction<
           WireSyncRust2DartDco Function(
-              ffi.Pointer<wire_cst_list_prim_u_8>)>>('wire_greet');
-  late final _wire_greet = _wire_greetPtr.asFunction<
+              ffi.Pointer<wire_cst_list_prim_u_8>)>>('wire_sync_greet');
+  late final _wire_sync_greet = _wire_sync_greetPtr.asFunction<
       WireSyncRust2DartDco Function(ffi.Pointer<wire_cst_list_prim_u_8>)>();
 
   ffi.Pointer<wire_cst_list_prim_u_8> cst_new_list_prim_u_8(

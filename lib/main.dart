@@ -60,74 +60,77 @@ class _AppBodyState extends State<AppBody> {
         TextButton(
           onPressed: () async {
             try {
-              print('DART: before sync greet');
-              final greeting = greet(name: nameController.text);
-              print('DART: sync greet output: $greeting');
-              showSnackbar('DART: sync greet output: $greeting');
+              print('DART: before sync_greet');
+              final greeting = syncGreet(name: nameController.text);
+              print('DART: sync_greet output: $greeting');
+              showSnackbar('DART: sync_greet output: $greeting');
             } catch (e) {
-              print('DART: unable to sync greet: $e');
+              print('DART: error when calling sync_greet: $e');
             }
           },
-          child: const Text('Call Sync Greet'),
+          child: const Text('Call sync_greet'),
         ),
         const SizedBox(height: 5),
         TextButton(
           onPressed: () async {
             try {
-              print('DART: before async greet');
+              print('DART: before async_greet');
               final greeting = await asyncGreet(
                 name: nameController.text,
               );
-              print('DART: async greet output: $greeting');
+              print('DART: async_greet output: $greeting');
               if (mounted) {
-                showSnackbar('DART: async greet output: $greeting');
+                showSnackbar('DART: async_greet output: $greeting');
               }
             } catch (e) {
-              print('DART: unable to async greet: $e');
+              print('DART: error when calling async_greet: $e');
             }
           },
-          child: const Text('Call Async Greet'),
+          child: const Text('Call async_greet'),
         ),
         const SizedBox(height: 5),
         TextButton(
           onPressed: () async {
             try {
-              print('DART: before async greet with callback');
+              print('DART: before async_greet_with_callback');
               final greeting = await asyncGreetWithCallback(
                 name: nameController.text,
                 logger: (p0) => Future.delayed(
                     const Duration(milliseconds: 100), () => print(p0)),
               );
-              print('DART: async greet with callback output: $greeting');
+              print('DART: async_greet_with_callback output: $greeting');
               if (mounted) {
                 showSnackbar(
-                    'DART: async greet with callback output: $greeting');
+                    'DART: async_greet_with_callback output: $greeting');
               }
             } catch (e) {
-              print('DART: unable to async greet with callback: $e');
+              print('DART: error when calling async_greet_with_callback: $e');
             }
           },
-          child: const Text('Call Async Greet With Callback'),
+          child: const Text('Call async_greet_with_callback'),
         ),
         const SizedBox(height: 5),
         TextButton(
           onPressed: () async {
             try {
-              print('DART: before async no await greet');
-              final greeting = await asyncNoAwaitGreet(
+              print('DART: before async_greet_with_callback_no_await');
+              final greeting = await asyncGreetWithCallbackNoAwait(
                 name: nameController.text,
                 logger: (p0) => Future.delayed(
                     const Duration(milliseconds: 100), () => print(p0)),
               );
-              print('DART: async no await greet output: $greeting');
+              print(
+                  'DART: async_greet_with_callback_no_await output: $greeting');
               if (mounted) {
-                showSnackbar('DART: async no await greet output: $greeting');
+                showSnackbar(
+                    'DART: async_greet_with_callback_no_await output: $greeting');
               }
             } catch (e) {
-              print('DART: unable to async no await greet: $e');
+              print(
+                  'DART: error when calling async_greet_with_callback_no_await: $e');
             }
           },
-          child: const Text('Call Async No Await Greet'),
+          child: const Text('Call async_greet_with_callback_no_await'),
         ),
         const SizedBox(height: 5),
       ],

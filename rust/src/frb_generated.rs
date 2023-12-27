@@ -78,14 +78,14 @@ fn wire_async_greet_with_callback_impl(
         },
     )
 }
-fn wire_async_no_await_greet_impl(
+fn wire_async_greet_with_callback_no_await_impl(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     name: impl CstDecode<String> + core::panic::UnwindSafe,
     logger: impl CstDecode<flutter_rust_bridge::DartOpaque> + core::panic::UnwindSafe,
 ) {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap_async::<flutter_rust_bridge::for_generated::DcoCodec, _, _, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "async_no_await_greet",
+            debug_name: "async_greet_with_callback_no_await",
             port: Some(port_),
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Normal,
         },
@@ -95,7 +95,8 @@ fn wire_async_no_await_greet_impl(
             move |context| async move {
                 transform_result_dco(
                     (move || async move {
-                        crate::api::simple::async_no_await_greet(api_name, api_logger).await
+                        crate::api::simple::async_greet_with_callback_no_await(api_name, api_logger)
+                            .await
                     })()
                     .await,
                 )
@@ -103,19 +104,19 @@ fn wire_async_no_await_greet_impl(
         },
     )
 }
-fn wire_greet_impl(
+fn wire_sync_greet_impl(
     name: impl CstDecode<String> + core::panic::UnwindSafe,
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
     FLUTTER_RUST_BRIDGE_HANDLER.wrap_sync::<flutter_rust_bridge::for_generated::DcoCodec, _>(
         flutter_rust_bridge::for_generated::TaskInfo {
-            debug_name: "greet",
+            debug_name: "sync_greet",
             port: None,
             mode: flutter_rust_bridge::for_generated::FfiCallMode::Sync,
         },
         move || {
             let api_name = name.cst_decode();
             transform_result_dco((move || {
-                Result::<_, ()>::Ok(crate::api::simple::greet(api_name))
+                Result::<_, ()>::Ok(crate::api::simple::sync_greet(api_name))
             })())
         },
     )

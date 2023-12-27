@@ -63,12 +63,12 @@ abstract class RustLibApi extends BaseApi {
       required FutureOr<void> Function(String) logger,
       dynamic hint});
 
-  Future<String> asyncNoAwaitGreet(
+  Future<String> asyncGreetWithCallbackNoAwait(
       {required String name,
       required FutureOr<void> Function(String) logger,
       dynamic hint});
 
-  String greet({required String name, dynamic hint});
+  String syncGreet({required String name, dynamic hint});
 }
 
 class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
@@ -130,7 +130,7 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       );
 
   @override
-  Future<String> asyncNoAwaitGreet(
+  Future<String> asyncGreetWithCallbackNoAwait(
       {required String name,
       required FutureOr<void> Function(String) logger,
       dynamic hint}) {
@@ -138,44 +138,45 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       callFfi: (port_) {
         var arg0 = cst_encode_String(name);
         var arg1 = cst_encode_DartFn_Inputs_String_Output_unit(logger);
-        return wire.wire_async_no_await_greet(port_, arg0, arg1);
+        return wire.wire_async_greet_with_callback_no_await(port_, arg0, arg1);
       },
       codec: DcoCodec(
         decodeSuccessData: dco_decode_String,
         decodeErrorData: dco_decode_AnyhowException,
       ),
-      constMeta: kAsyncNoAwaitGreetConstMeta,
+      constMeta: kAsyncGreetWithCallbackNoAwaitConstMeta,
       argValues: [name, logger],
       apiImpl: this,
       hint: hint,
     ));
   }
 
-  TaskConstMeta get kAsyncNoAwaitGreetConstMeta => const TaskConstMeta(
-        debugName: "async_no_await_greet",
+  TaskConstMeta get kAsyncGreetWithCallbackNoAwaitConstMeta =>
+      const TaskConstMeta(
+        debugName: "async_greet_with_callback_no_await",
         argNames: ["name", "logger"],
       );
 
   @override
-  String greet({required String name, dynamic hint}) {
+  String syncGreet({required String name, dynamic hint}) {
     return handler.executeSync(SyncTask(
       callFfi: () {
         var arg0 = cst_encode_String(name);
-        return wire.wire_greet(arg0);
+        return wire.wire_sync_greet(arg0);
       },
       codec: DcoCodec(
         decodeSuccessData: dco_decode_String,
         decodeErrorData: null,
       ),
-      constMeta: kGreetConstMeta,
+      constMeta: kSyncGreetConstMeta,
       argValues: [name],
       apiImpl: this,
       hint: hint,
     ));
   }
 
-  TaskConstMeta get kGreetConstMeta => const TaskConstMeta(
-        debugName: "greet",
+  TaskConstMeta get kSyncGreetConstMeta => const TaskConstMeta(
+        debugName: "sync_greet",
         argNames: ["name"],
       );
 

@@ -76,19 +76,19 @@ pub extern "C" fn wire_async_greet_with_callback(
 }
 
 #[no_mangle]
-pub extern "C" fn wire_async_no_await_greet(
+pub extern "C" fn wire_async_greet_with_callback_no_await(
     port_: i64,
     name: *mut wire_cst_list_prim_u_8,
     logger: *const std::ffi::c_void,
 ) {
-    wire_async_no_await_greet_impl(port_, name, logger)
+    wire_async_greet_with_callback_no_await_impl(port_, name, logger)
 }
 
 #[no_mangle]
-pub extern "C" fn wire_greet(
+pub extern "C" fn wire_sync_greet(
     name: *mut wire_cst_list_prim_u_8,
 ) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
-    wire_greet_impl(name)
+    wire_sync_greet_impl(name)
 }
 
 #[no_mangle]

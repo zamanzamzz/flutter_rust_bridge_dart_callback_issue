@@ -102,15 +102,15 @@ pub fn wire_async_greet_with_callback(
 }
 
 #[wasm_bindgen]
-pub fn wire_async_no_await_greet(
+pub fn wire_async_greet_with_callback_no_await(
     port_: flutter_rust_bridge::for_generated::MessagePort,
     name: String,
     logger: flutter_rust_bridge::for_generated::wasm_bindgen::JsValue,
 ) {
-    wire_async_no_await_greet_impl(port_, name, logger)
+    wire_async_greet_with_callback_no_await_impl(port_, name, logger)
 }
 
 #[wasm_bindgen]
-pub fn wire_greet(name: String) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
-    wire_greet_impl(name)
+pub fn wire_sync_greet(name: String) -> flutter_rust_bridge::for_generated::WireSyncRust2DartDco {
+    wire_sync_greet_impl(name)
 }

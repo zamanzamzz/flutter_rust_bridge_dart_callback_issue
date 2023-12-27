@@ -150,12 +150,12 @@ class RustLibWire extends BaseWire {
           NativePortType port_, String name, PlatformPointer logger) =>
       wasmModule.wire_async_greet_with_callback(port_, name, logger);
 
-  void wire_async_no_await_greet(
+  void wire_async_greet_with_callback_no_await(
           NativePortType port_, String name, PlatformPointer logger) =>
-      wasmModule.wire_async_no_await_greet(port_, name, logger);
+      wasmModule.wire_async_greet_with_callback_no_await(port_, name, logger);
 
   dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
-      wire_greet(String name) => wasmModule.wire_greet(name);
+      wire_sync_greet(String name) => wasmModule.wire_sync_greet(name);
 }
 
 @JS('wasm_bindgen')
@@ -178,9 +178,9 @@ class RustLibWasmModule implements WasmModule {
   external void wire_async_greet_with_callback(
       NativePortType port_, String name, PlatformPointer logger);
 
-  external void wire_async_no_await_greet(
+  external void wire_async_greet_with_callback_no_await(
       NativePortType port_, String name, PlatformPointer logger);
 
   external dynamic /* flutter_rust_bridge::for_generated::WireSyncRust2DartDco */
-      wire_greet(String name);
+      wire_sync_greet(String name);
 }
