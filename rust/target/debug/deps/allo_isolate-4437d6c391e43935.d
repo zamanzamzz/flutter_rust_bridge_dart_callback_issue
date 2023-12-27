@@ -1,0 +1,10 @@
+/home/ammanz/Projects/flutter_rust_bridge_dart_callback_issue/rust/target/debug/deps/liballo_isolate-4437d6c391e43935.rmeta: /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/lib.rs /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/dart_array.rs /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/into_dart.rs /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/into_dart_extra.rs /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/chrono.rs /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/ffi.rs
+
+/home/ammanz/Projects/flutter_rust_bridge_dart_callback_issue/rust/target/debug/deps/allo_isolate-4437d6c391e43935.d: /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/lib.rs /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/dart_array.rs /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/into_dart.rs /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/into_dart_extra.rs /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/chrono.rs /home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/ffi.rs
+
+/home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/lib.rs:
+/home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/dart_array.rs:
+/home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/into_dart.rs:
+/home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/into_dart_extra.rs:
+/home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/chrono.rs:
+/home/ammanz/.cargo/registry/src/index.crates.io-6f17d22bba15001f/allo-isolate-0.1.20/src/ffi.rs:
