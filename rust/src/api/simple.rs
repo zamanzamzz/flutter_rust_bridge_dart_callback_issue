@@ -1,6 +1,13 @@
 use flutter_rust_bridge::DartFnFuture;
 use std::panic::UnwindSafe;
 use std::{thread, time};
+use log::info;
+
+#[flutter_rust_bridge::frb(init)]
+pub fn init_app() {
+    // Default utilities - feel free to customize
+    flutter_rust_bridge::setup_default_user_utils();
+}
 
 async fn random_async() -> anyhow::Result<()> {
     thread::sleep(time::Duration::from_millis(400));
@@ -10,6 +17,7 @@ async fn random_async() -> anyhow::Result<()> {
 // this function will return but println won't output anything to stdout
 #[flutter_rust_bridge::frb(sync)] // Synchronous mode for simplicity of the demo
 pub fn sync_greet(name: String) -> String {
+    info!("RUST: test");
     format!("sync_greet: Hello, {name}!")
 }
 
@@ -31,3 +39,4 @@ pub async fn async_greet(name: String) -> anyhow::Result<String> {
     let _ = random_async().await;
     Ok(format!("async_greet: Hello, {name}!"))
 }
+
